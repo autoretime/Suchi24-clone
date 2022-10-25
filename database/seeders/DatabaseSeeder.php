@@ -36,11 +36,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Ball',
             'description' => 'good ',
             'price' => '126',
+            'category_id' => 1
         ]);
         Product::create([
             'name' => 'Toy',
             'description' => 'ball ',
             'price' => '300',
+            'category_id' => 2
+
         ]);
     }
 }
