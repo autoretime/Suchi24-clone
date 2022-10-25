@@ -19,6 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 
 // Route::resource('api/categories', CategoryController::class);
 // Route::resource('api/products', ProductController::class);
+=======
+Route::resource('categories', CategoryController::class);
+Route::resource('products', ProductController::class);
+>>>>>>> efaa7a6cfc915dbe28ae4d93de86eb418d48f129
