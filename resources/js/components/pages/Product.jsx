@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import CartContext from '../../contexts/CartContext';
 
 const Product = () => {
 
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [amount, setAmount] = useState(1);
+
+    const {addCartItem, modalShow} = useContext(CartContext);
 
     useEffect(() => {
         getProductPageData();
@@ -51,6 +54,7 @@ const Product = () => {
                                     <button
                                         className="btn btn-outline-secondary"
                                         type="button"
+                                        onClick={() => {addCartItem({...product, amount}); modalShow()}}
                                     >
                                         Add to cart
                                     </button>
