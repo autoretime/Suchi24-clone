@@ -24,6 +24,7 @@ Route::fallback( function () {
 });
 
 
-// Route::resource('categories', CategoryController::class);
-// Route::resource('products', ProductController::class);
+
+
+
 
