@@ -4,7 +4,7 @@ import CartReducer from "../reducers/CartReducer";
 
 
 const CartProvider = ({children}) => {    
-    const initialValues = {cart: JSON.parse(localStorage.getItem('cart') || [])};
+    const initialValues = {cart: JSON.parse(localStorage.getItem('cart')) || []};
     const [state, dispatch] = useReducer(CartReducer, initialValues)
 
 

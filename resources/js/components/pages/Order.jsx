@@ -1,4 +1,4 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Col, Form, Input, Row } from 'antd';
 import axios from 'axios';
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -23,32 +23,34 @@ const Order = () => {
 
     return (
         <div className="container">
-            <div className="order">
-                <div className="contact">
+            <Row >
+                <Col span={12}  >
+                    {" "}
                     <Form
                         name="basic"
+                        className='Form '
                         labelCol={{
                             span: 8,
                         }}
                         wrapperCol={{
                             span: 16,
                         }}
-                       
-                        onFinish={onFinish}                        
+                        onFinish={onFinish}
                         autoComplete="off"
                     >
                         <Form.Item
                             label="Email"
-                            name="email"
+                            name="email"  
+                                                  
                             rules={[
                                 {
-                                    type: 'email',
+                                    type: "email",
                                     required: true,
                                     message: "Please input your email!",
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input className='inpt'  />
                         </Form.Item>
 
                         <Form.Item
@@ -61,12 +63,11 @@ const Order = () => {
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input className='inpt' />
                         </Form.Item>
 
-                        
-
                         <Form.Item
+                        className=' d-flex align-items-end'
                             wrapperCol={{
                                 offset: 8,
                                 span: 16,
@@ -77,11 +78,11 @@ const Order = () => {
                             </Button>
                         </Form.Item>
                     </Form>
-                </div>
-                <div className="cart">
+                </Col>
+                <Col span={12}>
                     <MiniCart />
-                </div>
-            </div>
+                </Col>
+            </Row>
         </div>
     );
 }

@@ -20,7 +20,7 @@ const Home = () => {
     return (
         <div className='container'>
             
-            <h1>Categories</h1>
+            {/* <h1>Categories</h1>
 
             <div className="categories-list">
                 {categories.map((category) => (
@@ -29,10 +29,12 @@ const Home = () => {
                 </div>
                     
                 ))}
-            </div>
+            </div> */}
 
         </div>
     );
+
+    
 }
 
 export default Home;

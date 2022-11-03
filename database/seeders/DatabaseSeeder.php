@@ -19,31 +19,33 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
+        \App\Models\User::factory()->create([
+            'name' => 'Artem',
+            'email' => 'artlevchenko2@gmail.com',
+            'password' => bcrypt('qwerty'),
+            'role'=> 'admin'
+        ]);
+
+
+        // Category::create([
+        //     'name' => 'Sport',
+        // ]);
+        // Category::create([
+        //     'name' => 'Culture',
         // ]);
 
+        // Product::create([
+        //     'name' => 'Ball',
+        //     'description' => 'good ',
+        //     'price' => '126',
+        //     'category_id' => 1
+        // ]);
+        // Product::create([
+        //     'name' => 'Toy',
+        //     'description' => 'ball ',
+        //     'price' => '300',
+        //     'category_id' => 2
 
-        Category::create([
-            'name' => 'Sport',
-        ]);
-        Category::create([
-            'name' => 'Culture',
-        ]);
-
-        Product::create([
-            'name' => 'Ball',
-            'description' => 'good ',
-            'price' => '126',
-            'category_id' => 1
-        ]);
-        Product::create([
-            'name' => 'Toy',
-            'description' => 'ball ',
-            'price' => '300',
-            'category_id' => 2
-
-        ]);
+        // ]);
     }
 }
