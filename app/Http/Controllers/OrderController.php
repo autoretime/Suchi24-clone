@@ -12,20 +12,24 @@ use PhpParser\Node\Stmt\Foreach_;
 class OrderController extends Controller
 {
     
-    public function index(Request $request)
+    public function index()
     {
+        return Order::all();
+    }
 
-       $order = new Order();
-       $order->user_email = $request->userData['email'];
-       $order->user_phone = $request->userData['Phone'];
+    function placeOrder(Request $request)
+    {
+        // dd($request->all());
 
-       $order->total_sum = array_reduce($request->cartItems, function ($carry, $item){
+        $order = new Order();
+        $order->user_email = $request->formValues['email'];
+        $order->user_phone = $request->formValues['phone'];
+        $order->total_sum = array_reduce($request->cartItems, function ($carry, $item) {
             return $carry += $item['price'] * $item['amount'];
-            });
-    
+        });
         $order->save();
-    
-        Foreach($request->cartItems as $item){
+
+        foreach ($request->cartItems as $item) {
             $orderItem = new OrderItems();
             $orderItem->order_id = $order->id;
             $orderItem->product_id = $item['id'];
@@ -33,7 +37,8 @@ class OrderController extends Controller
             $orderItem->product_price = $item['price'];
             $orderItem->product_amount = $item['amount'];
             $orderItem->save();
-        }
+        };
+
 
         //Mail
         Mail::to('artlevchenko2@gmail.com')->send(new OrderShipped($order));
@@ -41,6 +46,11 @@ class OrderController extends Controller
 
 
         return response()->json(['order_id' => $order->id]);
+    }
+    public function orderDetails($id)
+    {
+        $orderProducts = Order::with('orderProducts')->where('id', $id)->get();
+        return response()->json($orderProducts[0]);
     }
 
 }

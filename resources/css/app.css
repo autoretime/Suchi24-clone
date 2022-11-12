@@ -5,6 +5,12 @@
     margin: 0 auto;
 }
 
+@media (max-width: 920px){
+    .main-block{
+        flex-direction:column;
+    }
+}
+
 
 .product_price{
     font-weight: bold!important;

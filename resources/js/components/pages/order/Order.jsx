@@ -2,8 +2,8 @@ import { Button, Col, Form, Input, Row } from 'antd';
 import axios from 'axios';
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CartContext from '../../contexts/CartContext';
-import MiniCart from '../MiniCart ';
+import CartContext from '../../../contexts/CartContext';
+import MiniCart from '../cart/MiniCart ';
 
 const Order = () => {
 

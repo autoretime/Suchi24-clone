@@ -20,9 +20,9 @@ const Home = () => {
     return (
         <div className='container'>
             
-            {/* <h1>Categories</h1>
+             <h1>Home</h1>
 
-            <div className="categories-list">
+            {/*<div className="categories-list">
                 {categories.map((category) => (
                 <div className="categories_item" key={category.id}>
                     <Link to={`/category/${category.id}`}>{category.name}</Link>

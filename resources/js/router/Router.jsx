@@ -1,12 +1,15 @@
 import React , { useContext }from 'react';
 import { Route, Routes } from 'react-router-dom';
-import AdminCategory from '../components/admin/pages/AdminCategory';
+import AdminCategory from '../components/admin/pages/AdminCategory/AdminCategory';
+import AdminOrder from '../components/admin/pages/AdminOrder/AdminOrder';
+import AdminOrderDetails from '../components/admin/pages/AdminOrder/AdminOrderDetails';
+import AdminProduct from '../components/admin/pages/AdminProduct/AdminProduct';
 import Category from '../components/pages/Category';
 import Home from "../components/pages/home";
 import Login from '../components/pages/Login';
 import NotFound from '../components/pages/NotFound';
-import Order from '../components/pages/Order';
-import OrderThank from '../components/pages/OrderThank';
+import Order from '../components/pages/order/Order';
+import OrderThank from '../components/pages/order/OrderThank';
 import Product from '../components/pages/Product';
 import Registration from '../components/pages/Registration';
 import AuthUserContext from "../contexts/AuthUserContext";
@@ -19,10 +22,12 @@ const Router = () => {
         return authUser?.role !== "admin" ? (
             ""
         ) : (
-            <Route path="/admin" >
+            <Route path="/admin">
                 <Route path="" element={<h1> Dashboard</h1>} />
-                <Route path="categories" element={<AdminCategory />} />
-                <Route path="products" element={ <h1> Products</h1> } />
+                <Route path="categories" element={<AdminCategory/>} />
+                <Route path="products" element={ <AdminProduct/> } />
+                <Route path="orders" element={<AdminOrder />} />
+                <Route path="orders/:id" element={<AdminOrderDetails />} />
             </Route>
         );
     };

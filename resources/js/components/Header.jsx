@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CartContext from "../contexts/CartContext";
-import Cart from "./Cart";
+import Cart from "./pages/cart/Cart";
 import AuthUserContext from "../contexts/AuthUserContext";
 import Logout from "./pages/Logout";
 
@@ -63,21 +63,42 @@ const Header = () => {
                                     Home
                                 </a>
                             </li>
-                            
-                            {/* <li className="nav-item">
-                                <a
-                                    className="nav-link active cart"
-                                    aria-current="page"
-                                    onClick={modalShow}
-                                >                                   
-                                        Cart <small>{cartItems.length}</small>
-                                    
-                                </a>
-                            </li> */}
+                            {authUser?.role === "admin" ? (
+                                <>
+                                    <li className="nav-item">
+                                        <a
+                                            className="nav-link active"
+                                            aria-current="page"
+                                            href="/admin/categories"
+                                        >
+                                            Categories
+                                        </a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a
+                                            className="nav-link active"
+                                            aria-current="page"
+                                            href="/admin/products"
+                                        >
+                                            Products
+                                        </a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a
+                                            className="nav-link active"
+                                            aria-current="page"
+                                            href="/admin/orders"
+                                        >
+                                            Orders
+                                        </a>
+                                    </li>
+                                </>
+                            ) : (
+                                ""
+                            )}
                         </ul>
-                        <ul className="navbar-nav me-3 mb-2 mb-lg-0 justify-content-end col" >                        
-                                <Logout />
-                            
+                        <ul className="navbar-nav me-3 mb-2 mb-lg-0 justify-content-end col">
+                            <Logout />
                         </ul>
                     </div>
 

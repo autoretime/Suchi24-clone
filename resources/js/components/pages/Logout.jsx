@@ -17,7 +17,6 @@ const Logout = () => {
     const component = () => {
         if (authUser) {
             return (
-                
                 <li className="nav-item dropdown">
                     <a
                         className="nav-link dropdown-toggle"
@@ -28,6 +27,11 @@ const Logout = () => {
                         {authUser.name}
                     </a>
                     <ul className="dropdown-menu dropdown-right">
+                        <li>
+                            <Link className="dropdown-item" to="/admin">
+                                Admin
+                            </Link>
+                        </li>
                         <li>
                             <a
                                 className="dropdown-item"
