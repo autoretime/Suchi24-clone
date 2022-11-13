@@ -4,27 +4,34 @@ import 'antd/dist/antd.css';
 import { useForm } from 'antd/lib/form/Form';
 
 // showModalAddState, modalAddClose, submitAddHandler
-const AddForm = ({  addCategories, handleCancel, editedCategory }) => {
+const AddForm = ({  addCategories, handleCancel, editedCategory ,editCategory}) => {
     
     const [form] = useForm();
+    const initialValues = {}
+
 
     useEffect(() => {
         form.setFieldsValue (editedCategory ?? {})
     }, [editedCategory, form]);
 
     const submitHandler = async(values) =>{
-        const {data} = await axios.post('/api/categories', values, {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
-        });
-        if(data.success){
-            handleCancel()
-            addCategories(data.data)            
+        if(addCategories){
+            const {data} = await axios.post('/api/categories', values, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            });
+                handleCancel()
+                addCategories(data)
         }
+
+        if(editCategory){
+            handleCancel()
+            editCategory(editedCategory.id, values)
+        }
+                    
     }
     
-    const initialValues = {}
     return (
         <div>
         <Form initialValues={initialValues} onFinish={submitHandler} form={form}>

@@ -30,6 +30,7 @@ const getColumnsCategory = (removeCategory, setEditedCategory, setIsModalOpen) =
                             setIsModalOpen(true);
                         }}
                     />
+                    
                     <Popconfirm
                         title="Sure to delete?"
                         onConfirm={() => removeCategory(category.id)}

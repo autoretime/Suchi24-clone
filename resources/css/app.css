@@ -1,97 +1,120 @@
 
-.container{
+.container {
     max-width: 1000px;
     max-height: 1000px;
     margin: 0 auto;
 }
 
-@media (max-width: 920px){
-    .main-block{
-        flex-direction:column;
+@media (max-width: 920px) {
+    .main-block {
+        flex-direction: column;
     }
 }
 
-
-.product_price{
-    font-weight: bold!important;
+.Name{
+    color:black;
+    text-align: center;
 }
 
-.img-product{
+.product_price {
+    font-weight: bold !important;
+    color:black;
+    text-decoration: none;
+}
+
+.img-product {
     width: 100%;
 }
 
-img{
+img {
     max-width: 100%;
     max-height: 100%;
 }
 
-.price{
+.price {
     font-size: 27px;
 }
 
-
-.cart{
-    cursor: pointer;
+.product_list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
 }
 
-.cart-item{
+.cart {
+    cursor: pointer;
+
+}
+
+.cart-item {
     display: grid;
     grid-template-columns: 50px 1fr 10px 20px 10px 70px 50px;
-    gap:10px;
+    gap: 10px;
     align-items: center;
     justify-items: center;
     margin-bottom: 20px;
 }
-.controls{
+
+.controls {
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
     user-select: none;
 }
-    .inc{
-color: rgb(69, 133, 228);
-    }
-    .dec{
-color: rgb(63, 63, 63);
-    }
+
+.inc {
+    color: rgb(69, 133, 228);
+}
+
+.dec {
+    color: rgb(63, 63, 63);
+}
 
 #root {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
+
 .sidebar {
     flex: 0 0 250px;
     padding-right: 50px;
     border-right: 1px solid rgb(219, 216, 216);
 }
 
-.main-block{
-    display:flex;
+.main-block {
+    display: flex;
     padding: 10px;
     flex: 1 1 auto;
 }
 
-.content{
+.content {
     flex: 1 1 auto;
 }
 
-.list-group-item-action:focus, .list-group-item-action:hover {
-    background-color: #0D6EFD!important;
-    color: #fff!important;
+.list-group-item-action:focus,
+.list-group-item-action:hover {
+    background-color: #0D6EFD !important;
+    color: #fff !important;
 }
 
-.dropdown-right{
-    right:0!important;
-    left:auto !important;
+.dropdown-right {
+    right: 0 !important;
+    left: auto !important;
 }
 
-.Form{
-    display: flex;    
+.Form {
+    display: flex;
     flex-direction: column;
-   align-items: flex-start;    
+    align-items: flex-start;
 }
 
-.inpt{
-    width:350px!important;
+.inpt {
+    width: 350px !important;
+}
+
+.order-total{
+    display:flex;
+    justify-content: end;
+    font-weight: 700;
 }

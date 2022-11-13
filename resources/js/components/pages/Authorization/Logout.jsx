@@ -1,17 +1,19 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import AuthUserContext from '../../contexts/AuthUserContext';
+import { Link, useNavigate } from 'react-router-dom';
+import AuthUserContext from '../../../contexts/AuthUserContext';
 import "bootstrap/dist/js/bootstrap.bundle";
 
 
 const Logout = () => {
     const [authUser, setAuthUser] =useContext(AuthUserContext);
+    const navigate = useNavigate()
 
     const logoutHandler= async() => {
         await axios.post('/api/logout');
         localStorage.removeItem('authUser');
         setAuthUser(null);
+        navigate('/');
     }
 
     const component = () => {

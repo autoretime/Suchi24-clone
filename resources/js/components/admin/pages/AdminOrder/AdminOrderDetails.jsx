@@ -40,6 +40,7 @@ const AdminOrderDetails = () => {
             key: "total",
             render: (orderProducts) => orderProducts.product_price * orderProducts.product_amount
         },
+        
 
     ];
 
@@ -54,7 +55,7 @@ const AdminOrderDetails = () => {
             <Table dataSource={orderProducts} columns={columns} rowKey='id'
                 footer={() => {
                     const total = orderProducts.reduce((sum, elem) => sum + (elem.product_price * elem.product_amount), 0);
-                    return <div className='order-total'><span>Total: {total}</span></div>
+                    return <div className='order-total  '><span>Total: {total}</span></div>
                 }}
             />
 

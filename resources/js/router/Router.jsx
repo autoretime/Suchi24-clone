@@ -6,13 +6,14 @@ import AdminOrderDetails from '../components/admin/pages/AdminOrder/AdminOrderDe
 import AdminProduct from '../components/admin/pages/AdminProduct/AdminProduct';
 import Category from '../components/pages/Category';
 import Home from "../components/pages/home";
-import Login from '../components/pages/Login';
-import NotFound from '../components/pages/NotFound';
+import Login from '../components/pages/Authorization/Login';
+import NotFound from '../components/pages/NotFound/NotFound';
 import Order from '../components/pages/order/Order';
 import OrderThank from '../components/pages/order/OrderThank';
 import Product from '../components/pages/Product';
-import Registration from '../components/pages/Registration';
+import Registration from '../components/pages/Authorization/Registration';
 import AuthUserContext from "../contexts/AuthUserContext";
+import '../../css/app.css'
 
 const Router = () => {
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import columns from './columns';
 import { Table } from 'antd';
+import getOrderColumns from './columns';
 
 const AdminOrder = () => {
 
@@ -19,8 +19,7 @@ const AdminOrder = () => {
     return (
         <div className='container'>
             <h2 className='my-3'>Orders</h2>
-
-            <Table dataSource={orders} columns={columns} rowKey='id' />
+            <Table dataSource={orders} columns={getOrderColumns()} rowKey='id' />
         </div>
     );
 }

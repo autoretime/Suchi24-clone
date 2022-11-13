@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useForm } from 'antd/lib/form/Form';
 
 
-const AdditionForm = ({handleCancel, addProduct, editedProduct}) => {
+const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) => {
 
     const [categories, setCategories] = useState([]);
     const [fileList, setFileList] = useState([]);
@@ -43,14 +43,21 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct}) => {
 
 
     const submitHandler = async(values) =>{
-        const {data} = await axios.post('/api/products', values, {
-            headers: {
-                "Content-Type": "multipart/form-data"
+        if(addProduct){
+            const {data} = await axios.post('/api/products', values, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            });
+            if(data.success){
+                handleCancel()
+                addProduct(data.data)            
             }
-        });
-        if(data.success){
+        }        
+
+        if(editProduct){
             handleCancel()
-            addProduct(data.data)            
+            editProduct(editedProduct.id, values)
         }
     }
     

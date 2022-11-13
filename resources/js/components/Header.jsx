@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import CartContext from "../contexts/CartContext";
 import Cart from "./pages/cart/Cart";
 import AuthUserContext from "../contexts/AuthUserContext";
-import Logout from "./pages/Logout";
+import Logout from "./pages/Authorization/Logout";
 
 
 const Header = () => {

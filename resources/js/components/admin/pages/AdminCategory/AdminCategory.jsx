@@ -30,11 +30,7 @@ const AdminCategory = () => {
     }
 
     const editCategory = async(id, values) => {
-        const {data} = await axios.put("/api/categories/" + id, values, {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
-        })
+        const {data} = await axios.put("/api/categories/" + id, values)
 
     }
    
@@ -43,7 +39,7 @@ const AdminCategory = () => {
         <div className='container '>
             <h2 className='my-3'>Categories</h2>
             <AddCategory addCategories={addCategories}/>
-            <EditCategory isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} editedCategory={editedCategory} />
+            <EditCategory isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} editedCategory={editedCategory} editCategory={editCategory} />
             <Table dataSource={categories} columns={getColumnsCategory(removeCategory, setEditedProduct, setIsModalOpen)} rowKey='id' pagination={{pageSize: 6}}/>
         </div >
     );
