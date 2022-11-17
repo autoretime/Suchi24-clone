@@ -47,7 +47,7 @@ const Login = () => {
                             required: true,
                             message: "Please input your email!",                            
                         },
-                        { type: "email" }
+                        { email: true }
                     ]}
                 >
                     <Input />

@@ -118,3 +118,46 @@ img {
     justify-content: end;
     font-weight: 700;
 }
+
+.search-block{
+    position: relative;
+}
+
+.search-result{
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    border: 1px #ddd solid;
+    z-index: 10;
+}
+
+.search-result ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.search-result ul li{
+    padding: 5px;
+}
+
+.search-result ul li:nth-child(odd){
+    background: #eee;
+}
+
+
+ .cart-items {
+    display: grid;
+    grid-template-columns: repeat(4 , 1fr);
+    gap: 15px;
+    align-items: center;
+    justify-items: center;
+    margin-bottom: 20px;
+    
+}
+ .control{
+    font-size: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 10px;
+}  

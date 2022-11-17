@@ -15,7 +15,12 @@ const Edit = ({ isModalOpen, setIsModalOpen, editedProduct, editProduct}) => {
                 onCancel={handleCancel}
                 footer={null}
             >
-                <AdditionForm handleCancel={handleCancel} addProduct={editProduct} editedProduct={editedProduct} />
+                <AdditionForm
+                    handleCancel={handleCancel}
+                    addProduct={null}
+                    editedProduct={editedProduct}
+                    editProduct={editProduct}
+                />
             </Modal>
         </div>
     );

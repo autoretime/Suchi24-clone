@@ -5,6 +5,7 @@ import CartContext from "../contexts/CartContext";
 import Cart from "./pages/cart/Cart";
 import AuthUserContext from "../contexts/AuthUserContext";
 import Logout from "./pages/Authorization/Logout";
+import Search from "./Search";
 
 
 const Header = () => {
@@ -97,6 +98,8 @@ const Header = () => {
                                 ""
                             )}
                         </ul>
+                        <Search/>
+
                         <ul className="navbar-nav me-3 mb-2 mb-lg-0 justify-content-end col">
                             <Logout />
                         </ul>
@@ -140,10 +143,6 @@ const Header = () => {
                     </Button>
                 </div>
             </nav>
-            {/* 
-            <Button variant="primary" onClick={handleShow}>
-                Cart <small>{cartItems.length}</small>
-            </Button> */}
 
             <Modal show={showModal} onHide={modalClose}>
                 <Modal.Header closeButton>

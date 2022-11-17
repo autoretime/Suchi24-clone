@@ -53,6 +53,8 @@ class ProductController extends Controller
         }
 
         $product->category = $product->category;
+        $product->image = $product->image;
+
 
         return response()->json([
             'success'=>true,

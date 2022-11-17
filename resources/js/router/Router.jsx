@@ -14,6 +14,7 @@ import Product from '../components/pages/Product';
 import Registration from '../components/pages/Authorization/Registration';
 import AuthUserContext from "../contexts/AuthUserContext";
 import '../../css/app.css'
+import SearchResult from '../components/pages/SearchResult';
 
 const Router = () => {
 
@@ -42,6 +43,7 @@ const Router = () => {
             <Route path="/order-thank" element={<OrderThank />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/search" element={<SearchResult />} />
             {adminRoutes()}
             <Route path="*" element={<NotFound />} />
         </Routes>

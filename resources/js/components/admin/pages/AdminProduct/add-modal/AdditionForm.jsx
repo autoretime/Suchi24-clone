@@ -10,6 +10,7 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) =>
 
     const [categories, setCategories] = useState([]);
     const [fileList, setFileList] = useState([]);
+    const [fileListGallery, setFileListGallery] = useState([]);
     const [form] = useForm();
 
     useEffect(() => {
@@ -17,7 +18,10 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) =>
     }, []);
 
     useEffect(() => {
-        form.setFieldsValue (editedProduct ?? {})
+        if(editedProduct){
+            form.setFieldsValue (editedProduct)
+            setFileList([{url: editedProduct.image }])
+        }
     }, [editedProduct, form]);
 
     const getCategories = async() =>{
@@ -43,29 +47,31 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) =>
 
 
     const submitHandler = async(values) =>{
-        if(addProduct){
+        if(editProduct){
+            editProduct(editedProduct.id, values)
+        }else{
             const {data} = await axios.post('/api/products', values, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
             });
             if(data.success){
-                handleCancel()
+                console.log(addProduct);
                 addProduct(data.data)            
-            }
-        }        
-
-        if(editProduct){
-            handleCancel()
-            editProduct(editedProduct.id, values)
+            } 
         }
+
+        handleCancel()
+         
+
     }
     
     const initialValues = {}
 
     return (
         <div>
-            <Form initialValues={initialValues} onFinish={submitHandler} form={form}>
+            <Form initialValues={initialValues} onFinish={ submitHandler }
+                form={form}>
                 <Form.Item
                     label="Name"
                     name="name"
@@ -104,6 +110,22 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) =>
                         maxCount={1}
                         onPreview={onPreview}
                         fileList={fileList}
+                    >
+                        <div>
+                            <PlusOutlined />
+                            <div style={{ marginTop: 8 }}>Upload</div>
+                        </div>
+                    </Upload>
+                </Form.Item>
+
+                <Form.Item label="Gallery" name="gallery">
+                    <Upload
+                        beforeUpload={() => false}
+                        onChange={({fileList}) => setFileListGallery(fileList)}
+                        listType="picture-card"
+                        maxCount={5}
+                        onPreview={onPreview}
+                        fileList={fileListGallery}
                     >
                         <div>
                             <PlusOutlined />

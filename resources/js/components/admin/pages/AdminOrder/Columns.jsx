@@ -1,10 +1,14 @@
 import { EyeOutlined } from '@ant-design/icons';
-import { EditOutlined } from '@ant-design/icons';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Popconfirm } from 'antd';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-const getOrderColumns = () =>{
+const getOrderColumns = (removeOrder) =>{
+
+    const dateFormat = (str = '') => {
+        return moment(str).utc().format("YYYY-MM-DD, HH:mm:ss")
+    }
     const columns = [
         {
             title: "Order number",
@@ -27,29 +31,25 @@ const getOrderColumns = () =>{
             key: "user_phone",
         },
         {
-            title: "Create date",
-            dataIndex: "created_at",
+            title: "Create",
             key: "created_at",
+            render: (order) => dateFormat(order.created_at)
+        },
+        {
+            title: "Update",
+            key: "created_at",
+            render: (order) => dateFormat(order.updated_at)
         },
         {
             title: "Action",
             key: "action",
             render: (order) => (
                 <div>
-                    <Link to={`/admin/orders/${order.id}`}><EyeOutlined style={{ fontSize: '45px', paddingRight: '10px' }} /></Link>
-                    <EditOutlined
-                        style={{
-                            fontSize: "25px",
-                            color: "#00D678",
-                            paddingRight: "10px",
-                        }}
-                        onClick={() => {
-                           console.log();
-                        }}
-                    />
+                    <Link to={`/admin/orders/${order.id}`}><EyeOutlined style={{ fontSize: '25px', paddingRight: '10px' }} /></Link>
+                    
                     <Popconfirm
                         title="Sure to delete?"
-                        onConfirm={() => console.log()}
+                        onConfirm={() => removeOrder(order.id)}
                     >
                         <DeleteOutlined
                             style={{ fontSize: "25px", color: "#f00" }}

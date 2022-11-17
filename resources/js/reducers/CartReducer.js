@@ -3,8 +3,6 @@ const CartReducer  = (state, action)  => {
     
     let deep = _.cloneDeep(state.cart);
 
-
-
     switch (action.type) {
         case "addProduct":
             const findProduct = state.cart.find(item => item.id === action.product.id)// Sravnenie est' li tovar v korzine

@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Table } from 'antd';
+import moment from 'moment';
+import Edit from './edit-info/edit';
+import EditProduct from './edit-info/edit-product';
+import { EditOutlined } from '@ant-design/icons';
 
 const AdminOrderDetails = () => {
     const { id } = useParams();
     const [order, setOrder] = useState([]);
     const [orderProducts, setOrderProducts] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     useEffect(() => {
         getOrderData();
     }, [id]);
+
+
+    const dateFormat = (str = '') => {
+        return moment(str).utc().format("YYYY-MM-DD, HH:mm:ss")
+    }
 
     const getOrderData = () => {
         axios.get(`/api/order-details/${id}`)
@@ -40,6 +51,24 @@ const AdminOrderDetails = () => {
             key: "total",
             render: (orderProducts) => orderProducts.product_price * orderProducts.product_amount
         },
+        {
+            title: "Action",
+            key: "action",
+            render: (category) => (
+                <div>
+                    <EditOutlined
+                        style={{
+                            fontSize: "25px",
+                            color: "#00D678",
+                            paddingRight: "10px",
+                        }}
+                        onClick={() => {
+                            setIsModalOpen(true);
+                        }}
+                    />
+                </div>
+            ),
+        },
         
 
     ];
@@ -49,15 +78,12 @@ const AdminOrderDetails = () => {
             <h2 className='my-3'>Order №{id}</h2>
             <p><b>Email:</b> {order.user_email}</p>
             <p><b>Phone:</b> {order.user_phone}</p>
-            <p><b>Created at:</b> {order.created_at}</p>
+            <p><b>Created at:</b> {dateFormat(order.created_at)}</p>
+            <Edit order={order} setOrder={setOrder} />
             <hr></hr>
             <h4>Order Products:</h4>
-            <Table dataSource={orderProducts} columns={columns} rowKey='id'
-                footer={() => {
-                    const total = orderProducts.reduce((sum, elem) => sum + (elem.product_price * elem.product_amount), 0);
-                    return <div className='order-total  '><span>Total: {total}</span></div>
-                }}
-            />
+            <EditProduct setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} orderProducts={orderProducts} setOrderProducts={setOrderProducts} />
+            <Table dataSource={orderProducts} columns={columns} rowKey='id'/>
 
         </div>
     );

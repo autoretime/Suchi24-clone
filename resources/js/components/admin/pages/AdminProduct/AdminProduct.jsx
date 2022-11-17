@@ -4,6 +4,7 @@ import {Table } from 'antd';
 import getColumns from './Columns';
 import AddProduct from './add-modal/AddProduct';
 import Edit from './edit/Edit';
+import _ from 'lodash';
 
 const AdminProduct = () => {
 
@@ -13,7 +14,6 @@ const AdminProduct = () => {
 
     const getProducts = async () => {
         const response =await axios.get('/api/products');
-        console.log(response);
         setProducts(response.data);
     }
 
@@ -27,12 +27,16 @@ const AdminProduct = () => {
     }
 
     const editProduct = async(id, values) => {
-        const {data} = await axios.put("/api/products/" + id, values, {
+        const {data} = await axios.post("/api/products/" + id, values, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
         })
 
+        const updatedProducts = _.cloneDeep(products)
+        const product = updatedProducts.find(p => p.id === id)
+        _.assign(product, data.data)        
+        setProducts(updatedProducts)
     }
 
     useEffect(() => {

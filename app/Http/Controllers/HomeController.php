@@ -35,4 +35,11 @@ class HomeController extends Controller
         ], 200);
     }
 
+    public function search(Request $request)
+    {
+        $searchText = $request->q;
+        $products = Product::where('name', 'LIKE', "%$searchText%")->get();
+        return response()->json($products, 200);
+    } 
+
 }

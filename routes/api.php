@@ -40,6 +40,12 @@ Route::resource('products', ProductController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('orders', OrderController::class);
 Route::get('order-details/{id}', [OrderController::class, 'orderDetails']);
+Route::post('order-products-update', [OrderController::class, 'updateOrderProducts']);
+
+Route::post('products/{id}', [ProductController::class, 'update']);
+
+//search
+Route::get('search', [HomeController::class, 'search']);
 
 
 

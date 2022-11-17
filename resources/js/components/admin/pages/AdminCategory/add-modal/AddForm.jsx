@@ -21,14 +21,13 @@ const AddForm = ({  addCategories, handleCancel, editedCategory ,editCategory}) 
                     "Content-Type": "multipart/form-data"
                 }
             });
-                handleCancel()
                 addCategories(data)
         }
 
         if(editCategory){
-            handleCancel()
             editCategory(editedCategory.id, values)
         }
+        handleCancel()
                     
     }
     

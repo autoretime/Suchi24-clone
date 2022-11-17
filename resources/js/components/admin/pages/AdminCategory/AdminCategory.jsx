@@ -31,7 +31,10 @@ const AdminCategory = () => {
 
     const editCategory = async(id, values) => {
         const {data} = await axios.put("/api/categories/" + id, values)
-
+        const updatedCategory = _.cloneDeep(categories)
+        const category = updatedCategory.find(p => p.id === id)
+        _.assign(category, data)        
+        setCategories(updatedCategory)
     }
    
 
