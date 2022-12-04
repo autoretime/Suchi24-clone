@@ -11,6 +11,8 @@ const AddCategory = ({addCategories}) => {
         setIsModalOpen(false);
     };
 
+     
+
     return (
         <>
             <Button type="primary" onClick={showModal}>

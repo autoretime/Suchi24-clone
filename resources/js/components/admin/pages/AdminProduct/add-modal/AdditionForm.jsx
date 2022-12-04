@@ -4,7 +4,11 @@ import { PlusOutlined } from '@ant-design/icons';
 import TextArea from "antd/lib/input/TextArea";
 import axios from 'axios';
 import { useForm } from 'antd/lib/form/Form';
-
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import DragableUploadListItem from './DragableUploadListItem';
+import update from 'immutability-helper';
+import { useCallback } from 'react';
 
 const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) => {
 
@@ -19,8 +23,14 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) =>
 
     useEffect(() => {
         if(editedProduct){
+            
             form.setFieldsValue (editedProduct)
             setFileList([{url: editedProduct.image }])
+            setFileListGallery(
+                editedProduct.galleries.map((item) => {
+                    return { url: item.path };
+                })
+            );
         }
     }, [editedProduct, form]);
 
@@ -47,8 +57,13 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) =>
 
 
     const submitHandler = async(values) =>{
+
+        const gallery = fileListGallery.map((item) => item.originFileObj);
+        values["gallery[]"] = gallery;
+        console.log(values);
+
         if(editProduct){
-            editProduct(editedProduct.id, values)
+            editProduct(editedProduct.id, values, fileListGallery)
         }else{
             const {data} = await axios.post('/api/products', values, {
                 headers: {
@@ -68,10 +83,28 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) =>
     
     const initialValues = {}
 
+    const moveRow = useCallback(
+        (dragIndex, hoverIndex) => {
+            const dragRow = fileListGallery[dragIndex];
+            setFileListGallery(
+                update(fileListGallery, {
+                    $splice: [
+                        [dragIndex, 1],
+                        [hoverIndex, 0, dragRow],
+                    ],
+                })
+            );
+        },
+        [fileListGallery]
+    );
+
     return (
         <div>
-            <Form initialValues={initialValues} onFinish={ submitHandler }
-                form={form}>
+            <Form
+                initialValues={initialValues}
+                onFinish={submitHandler}
+                form={form}
+            >
                 <Form.Item
                     label="Name"
                     name="name"
@@ -105,7 +138,7 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) =>
                 <Form.Item label="Image" name="image">
                     <Upload
                         beforeUpload={() => false}
-                        onChange={({fileList}) => setFileList(fileList)}
+                        onChange={({ fileList }) => setFileList(fileList)}
                         listType="picture-card"
                         maxCount={1}
                         onPreview={onPreview}
@@ -119,23 +152,37 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) =>
                 </Form.Item>
 
                 <Form.Item label="Gallery" name="gallery">
-                    <Upload
-                        beforeUpload={() => false}
-                        onChange={({fileList}) => setFileListGallery(fileList)}
-                        listType="picture-card"
-                        maxCount={5}
-                        onPreview={onPreview}
-                        fileList={fileListGallery}
-                    >
-                        <div>
-                            <PlusOutlined />
-                            <div style={{ marginTop: 8 }}>Upload</div>
-                        </div>
-                    </Upload>
+                    <DndProvider backend={HTML5Backend}>
+                        <Upload
+                            beforeUpload={() => false}
+                            onChange={({ fileList }) =>
+                                setFileListGallery(fileList)
+                            }
+                            listType="picture-card"
+                            maxCount={5}
+                            onPreview={onPreview}
+                            fileList={fileListGallery}
+                            itemRender={(originNode, file, currFileList) => (
+                                <DragableUploadListItem
+                                  originNode={originNode}
+                                  file={file}
+                                  fileList={currFileList}
+                                  moveRow={moveRow}
+                                />
+                            )}
+                        >
+                            <div>
+                                <PlusOutlined />
+                                <div style={{ marginTop: 8 }}>Upload</div>
+                            </div>
+                        </Upload>
+                    </DndProvider>
                 </Form.Item>
 
-                <Form.Item >
-                    <Button htmlType='submit' type='primary'>Save</Button>
+                <Form.Item>
+                    <Button htmlType="submit" type="primary">
+                        Save
+                    </Button>
                 </Form.Item>
             </Form>
         </div>

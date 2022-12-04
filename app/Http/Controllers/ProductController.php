@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -44,6 +45,8 @@ class ProductController extends Controller
             'category_id'=>'required|numeric'
         ]);
 
+        // dd($request->all());
+
         $product = Product::create($request->all());
 
         if($request->image_file){
@@ -52,8 +55,19 @@ class ProductController extends Controller
             $product->save();
         }
 
+        foreach($request->gallery as $key=>$file){
+            $path = $file->store('products', ['disk'=>'public']);
+            $image = new Gallery();
+            $image->path = '/uploads/' . $path;
+            $image->product_id = $product->id;
+            $image->order = ($key+1);
+            $image->save();             
+        }
+
         $product->category = $product->category;
         $product->image = $product->image;
+        $product->galleries = $product->galleries;
+
 
 
         return response()->json([
@@ -108,9 +122,38 @@ class ProductController extends Controller
             $path = $request->image_file->store('products', ['disk'=>'public']);
             $product->image = '/uploads/' . $path;
             $product->save();
+        }elseif(!$request->image){
+            unlink(public_path() . $product->image);
+            $product->image = null;
+            $product->save();
         }
 
+        if ($request->newImages) {
+            foreach ($request->newImages as $key => $file) {
+                $path = $file->store('products', ['disk' => 'public']);
+                $image = new Gallery();
+                $image->path = '/uploads/' . $path;
+                $image->product_id = $product->id;
+                $image->order = array_search($file->getClientOriginalName(), $request->gallery) + 1 ;
+                $image->save();
+            }
+        }
+
+
+        foreach ($product->galleries as $image) {
+            if (!in_array($image->path, $request->gallery??[])) {
+                unlink(public_path() . $image->path);
+                $image->delete();
+            } else {
+                $image->order = array_search($image->path, $request->gallery) + 1;
+                $image->save();
+            }
+        }
+        
+        
+
         $product->category = $product->category;
+        $product->newGalleries = Gallery::where('product_id', $id)->orderBy('order')->get();
 
         return response()->json([
             'success'=>true,

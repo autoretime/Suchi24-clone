@@ -26,13 +26,21 @@ const AdminProduct = () => {
         const response = await axios.delete("/api/products/" + id)
     }
 
-    const editProduct = async(id, values) => {
+    const editProduct = async(id, values, fileListGallery) => {
+        values["gallery[]"] = fileListGallery.map((item) =>
+            item.url ? item.url : item.name
+        );
+        values["newImages[]"] = fileListGallery
+            .filter((item) => item.originFileObj)
+            .map((item) => item.originFileObj);
+
         const {data} = await axios.post("/api/products/" + id, values, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
         })
 
+        data.data.galleries = data.data.newGalleries
         const updatedProducts = _.cloneDeep(products)
         const product = updatedProducts.find(p => p.id === id)
         _.assign(product, data.data)        

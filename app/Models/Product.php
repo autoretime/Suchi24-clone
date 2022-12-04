@@ -12,6 +12,8 @@ class Product extends Model
 
     public $timestamps = false;
 
+    protected $with = ['galleries', 'category'];
+
     protected $fillable = [
         'name',
         'description',
@@ -34,6 +36,6 @@ class Product extends Model
 
     public function galleries()
     {
-        return $this->hasMany(Gallery::class);
+        return $this->hasMany(Gallery::class)->orderBy('order');
     }
 }

@@ -1,6 +1,6 @@
 import { EditOutlined } from '@ant-design/icons';
 import { DeleteOutlined } from '@ant-design/icons';
-import { Popconfirm } from 'antd';
+import { Avatar, Popconfirm } from 'antd';
 
 const getColumnsCategory = (removeCategory, setEditedCategory, setIsModalOpen) => {
     const columns = [
@@ -8,6 +8,13 @@ const getColumnsCategory = (removeCategory, setEditedCategory, setIsModalOpen) =
             title: "id",
             key: "id",
             render: ({ id }) => <div>{id}</div>,
+        },
+        {
+            title: "Image",
+            dataIndex: "image",
+            render: (category) => (
+                <Avatar src={category} shape="square" size={70} />
+            ),
         },
         {
             title: "Name",

@@ -16,9 +16,7 @@ class CategoryController extends Controller
     {
 
         return Category::all();
-
         $categories = Category::all();
-        dd($categories);
 
     }
 
@@ -42,7 +40,8 @@ class CategoryController extends Controller
     {
 
         $request->validate([
-            'name' => 'required'
+            'name'=>'required',
+            'image'=>'mimes:jpg,png,gif,webp',
         ]);
 
        $category =  Category::create($request->all());

@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import CartContext from '../../contexts/CartContext';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
+
 
 const Product = () => {
 
@@ -18,6 +20,7 @@ const Product = () => {
     const getProductPageData = async () => {
         await axios.get(`/api/product/${id}`).then(({ data }) => {
             setProduct(data.product);
+            console.log(data.product);
         });
     };
     
@@ -26,11 +29,22 @@ const Product = () => {
             <div className="card mb-3">
                 <div className="row g-0">
                     <div className="col-md-4">
-                        <img
+                        {/* <img
                             src={product.image}
                             alt={product.name}
                             className="img-product rounded-start"
-                        />
+                        /> */}
+                        <Splide aria-label="My Favorite Images">
+                            {product.galleries?.map((item) => (
+                                <SplideSlide>
+                                    <img
+                                        src={item.path}
+                                        key={item.id}
+                                        alt={item.name}
+                                    />
+                                </SplideSlide>
+                            ))}
+                        </Splide>
                     </div>
                     <div className="col-md-8">
                         <div className="card-body">
@@ -48,13 +62,18 @@ const Product = () => {
                                     className="form-control"
                                     value={amount}
                                     min="1"
-                                    onChange={({ target }) => setAmount(target.value)}
+                                    onChange={({ target }) =>
+                                        setAmount(target.value)
+                                    }
                                 />{" "}
                                 <div className="input-group-append">
                                     <button
                                         className="btn btn-outline-primary"
                                         type="button"
-                                        onClick={() => {addCartItem({...product, amount}); modalShow()}}
+                                        onClick={() => {
+                                            addCartItem({ ...product, amount });
+                                            modalShow();
+                                        }}
                                     >
                                         Add to cart
                                     </button>
@@ -64,6 +83,7 @@ const Product = () => {
                     </div>
                 </div>
             </div>
+
             {/* <h1>{product.name}</h1>
             <img src={product.image} alt={product.name} />
             <div>{product.price}UAH</div>

@@ -63,40 +63,7 @@ const Header = () => {
                                 >
                                     Home
                                 </a>
-                            </li>
-                            {authUser?.role === "admin" ? (
-                                <>
-                                    <li className="nav-item">
-                                        <a
-                                            className="nav-link active"
-                                            aria-current="page"
-                                            href="/admin/categories"
-                                        >
-                                            Categories
-                                        </a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a
-                                            className="nav-link active"
-                                            aria-current="page"
-                                            href="/admin/products"
-                                        >
-                                            Products
-                                        </a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a
-                                            className="nav-link active"
-                                            aria-current="page"
-                                            href="/admin/orders"
-                                        >
-                                            Orders
-                                        </a>
-                                    </li>
-                                </>
-                            ) : (
-                                ""
-                            )}
+                            </li>                            
                         </ul>
                         <Search/>
 
