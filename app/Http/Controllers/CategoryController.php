@@ -40,13 +40,25 @@ class CategoryController extends Controller
     {
 
         $request->validate([
-            'name'=>'required',
-            'image'=>'mimes:jpg,png,gif,webp',
+            'name' => 'required',
+            'image_file' => 'mimes:jpg,png,gif,webp',
         ]);
 
-       $category =  Category::create($request->all());
-       return $category;
+        $category =  Category::create($request->all());
 
+        if ($request->image_file) {
+            $path = $request->image_file->store('categories', ['disk' => 'public']);
+            $category->image = '/uploads/' . $path;
+            $category->save();
+        }
+
+        $category->image = $category->image;
+
+
+        return response()->json([
+            'success' => true,
+            'data' => $category
+        ]);
     }
 
     /**
@@ -80,14 +92,27 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required'
+            'name'=>'required',
+            'image_file'=>'mimes:jpg,png,gif,webp',
         ]);
 
+       $category =  Category::findOrFail($id);
        $category->update($request->all());
-       return $category;
+
+       if($request->image_file){
+        $path = $request->image_file->store('categories', ['disk'=>'public']);
+        $category->image = '/uploads/' . $path;
+        $category->save();
+    }
+       
+       return response()->json([
+        'success' => true,
+        'data' => $category
+       ]);
+       
     }
 
 

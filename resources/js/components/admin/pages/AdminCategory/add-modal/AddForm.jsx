@@ -29,7 +29,11 @@ const AddForm = ({  addCategories, handleCancel, editedCategory ,editCategory}) 
 
 
     useEffect(() => {
-        form.setFieldsValue (editedCategory ?? {})
+        if(editedCategory){
+            form.setFieldsValue (editedCategory ?? {})
+            setFileList([{url: editedCategory.image }])
+        }
+       
     }, [editedCategory, form]);
 
     const submitHandler = async(values) =>{
@@ -71,7 +75,7 @@ const AddForm = ({  addCategories, handleCancel, editedCategory ,editCategory}) 
                         listType="picture-card"
                         onPreview={onPreview}
                         maxCount={1}
-                        fileList={null}
+                        fileList={fileList}
                     >
                         <div>
                             <PlusOutlined />
