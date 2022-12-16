@@ -1,0 +1,16 @@
+.order-position{
+    border-radius: 30px 30px 30px 30px;
+    box-shadow: 0px 0px 7px 0px rgb(21 19 52 / 50%);
+    padding: 60px;
+}
+
+.second-col{
+    padding: 0 2em;
+    border-width: 0 2px 2px;
+    border-style: solid;
+    border-color: #ebebeb;
+}
+
+.lbl{
+    font-weight: bold;
+}

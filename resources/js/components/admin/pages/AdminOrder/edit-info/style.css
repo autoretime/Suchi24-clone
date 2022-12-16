@@ -1,0 +1,57 @@
+.controlers {
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+}
+
+.inc {
+    height: 30px;
+    width: 30px;
+    color: white;
+    background: #43A948;
+    border-color: #43A948;
+    letter-spacing: 0;
+    border-style: solid;
+    border-width: 2px;
+    transition: none;
+    border-radius: 20px;
+    margin-top: 2px;
+}
+
+.dec {
+    height: 30px;
+    width: 30px;
+    color: white;
+    background: #43A948;
+    border-color: #43A948;
+    font-size: 16px;
+    letter-spacing: 0;
+    border-style: solid;
+    border-width: 2px;
+    transition: none;
+    border-radius: 20px;
+    padding-left: 9px;
+    margin-top: 2px;
+}
+
+.inc:hover {
+    background: #000;
+}
+
+.dec:hover {
+    background: #000;
+}
+
+.admin-btns{
+    padding: 0 25px;
+    border-radius: 22px 22px 22px 22px;
+    background-color: #43A948;
+    border-width: 2px;
+    color: #fff;
+}
+
+.admin-btns:hover {
+    border-color: #43A948;
+    background: #000;
+    color: #fff;
+}

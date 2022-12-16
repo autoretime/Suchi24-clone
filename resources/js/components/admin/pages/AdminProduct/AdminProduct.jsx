@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useState, useEffect}  from 'react';
-import {Table } from 'antd';
+import { Input, Table } from 'antd';
 import getColumns from './Columns';
 import AddProduct from './add-modal/AddProduct';
 import Edit from './edit/Edit';
@@ -11,10 +11,17 @@ const AdminProduct = () => {
     const [products, setProducts] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editedProduct, setEditedProduct] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+    const [searchText, setSearchText] = useState('');
+    let [filteredData] = useState();
 
     const getProducts = async () => {
+        setLoading(true)
         const response =await axios.get('/api/products');
         setProducts(response.data);
+        setLoading(false)
     }
 
     const addProduct = (product) =>{
@@ -35,6 +42,7 @@ const AdminProduct = () => {
             .map((item) => item.originFileObj);
 
         const {data} = await axios.post("/api/products/" + id, values, {
+            
             headers: {
                 "Content-Type": "multipart/form-data"
             }
@@ -51,13 +59,67 @@ const AdminProduct = () => {
         getProducts()
     }, []);
 
+    const globalChange = () => {
+        filteredData = products.filter((value) => { 
+            console.log(value.price);
+            return (                
+                value.name.toLowerCase().includes(searchText.toLowerCase())|| 
+                value.category.name.toLowerCase().includes(searchText.toLowerCase())
+            );
+        })
+        setProducts(filteredData);
+    }
+
+    const Change = (e) => {
+        setSearchText(e.target.value)
+        if(e.target.value === ''){
+            getProducts()
+        }
+    }
+
 
     return (
-        <div className='container'>
+        <div className="container">
             <h1>Products</h1>
-            <AddProduct addProduct={addProduct}/>
-            <Edit isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} editedProduct={editedProduct} editProduct={editProduct} />
-            <Table dataSource={products} columns={getColumns(removeProduct, setEditedProduct, setIsModalOpen)} rowKey='id' pagination={{pageSize: 6}} />
+
+            <div className='items'>
+                <AddProduct addProduct={addProduct} />
+                <Input.Search
+                    placeholder="Search here ..."
+                    style={{ margin: 10, width: 500 , }}
+                    allowClear
+                    value={searchText}
+                    onChange={Change}
+                    onSearch={globalChange}
+                />                    
+            </div>
+
+            <Edit
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+                editedProduct={editedProduct}
+                editProduct={editProduct}
+            />
+            
+            <Table
+                loading={loading}
+                dataSource={filteredData && filteredData.length ?  filteredData: products}
+                columns={getColumns(
+                    removeProduct,
+                    setEditedProduct,
+                    setIsModalOpen,
+                    searchText
+
+                )}
+                rowKey="id"
+                pagination={{
+                    current: page,
+                    pageSize: pageSize,
+                    onChange: (page, pageSize) => {
+                        setPage(page), setPageSize(pageSize);
+                    },
+                }}
+            />
         </div>
     );
 }

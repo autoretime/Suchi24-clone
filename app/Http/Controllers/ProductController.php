@@ -41,6 +41,7 @@ class ProductController extends Controller
             'name'=>'required',
             'description'=>'required',
             'price'=>'required|numeric',
+            'weight'=>'required|numeric',
             'image_file'=>'mimes:jpg,png,gif,webp',
             'category_id'=>'required|numeric'
         ]);
@@ -55,7 +56,7 @@ class ProductController extends Controller
             $product->save();
         }
 
-        foreach($request->gallery as $key=>$file){
+        foreach((array)$request->gallery as $key=>$file){
             $path = $file->store('products', ['disk'=>'public']);
             $image = new Gallery();
             $image->path = '/uploads/' . $path;
@@ -111,6 +112,7 @@ class ProductController extends Controller
             'name'=>'required',
             'description'=>'required',
             'price'=>'required|numeric',
+            'weight'=>'required|numeric',
             'image_file'=>'mimes:jpg,png,gif,webp',
             'category_id'=>'required|numeric'
         ]);

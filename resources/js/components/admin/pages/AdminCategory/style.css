@@ -1,0 +1,14 @@
+
+.admin-btns{
+    padding: 0 25px;
+    border-radius: 22px 22px 22px 22px;
+    background-color: #43A948;
+    border-width: 2px;
+    color: #fff;
+}
+
+.admin-btns:hover {
+    border-color: #43A948;
+    background: #000;
+    color: #fff;
+}

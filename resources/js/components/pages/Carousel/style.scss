@@ -1,0 +1,111 @@
+.discounts-body-test {
+    display: flex;
+margin-top: 35px;
+position: relative;
+min-height: 525px;
+padding: 0 65px;
+box-shadow: 0px 0px 10px 0px rgb(28 36 95 / 32%);
+border-radius: 44px 44px 44px 44px;
+
+
+&__background{
+position: absolute;
+top: 0;
+left:0;
+right:0;
+z-index: -1;
+img{
+object-fit: contain;
+width: 100%!important;
+height: 100%!important;
+border-radius: 44px 44px 44px 44px;
+
+}
+}
+    &__text {
+        width: 60%;
+        margin-right: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    &__title h6 {
+        font-family: "Rubik", Sans-serif;
+        font-size: 37px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 10px;
+        width: 530px;
+        border-bottom: none;
+
+    }
+
+    &__title h5 {
+        font-family: "Rubik", Sans-serif;
+        font-size: 37px;
+        font-weight: 700;
+        color: #00c6ad;
+        margin-bottom: 10px;
+        width: 530px;
+        border-bottom: none!important;
+    }
+
+    &__description {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 29px;
+        color: #5e5e5e;;
+        margin-bottom: 34px;
+        width: 400px;
+
+    }
+
+    &__description p {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 29px;
+        color: #fff;
+        margin-bottom: 34px;
+        width: 400px;
+
+    }
+
+    &__button {
+    color: #FFFFFF;
+    background-color: #43A948;
+    border-style: solid;
+    border-width: 2px 2px 2px 2px;
+    border-color: #43A948;
+    border-radius: 26px 26px 26px 26px;
+    padding: 9px 30px 9px 30px;
+        &:hover{
+            background-color: #000;
+            color: #FFFFFF;
+        }
+    }
+
+    &__button a{       
+        text-decoration: none!important;
+        color: #FFFFFF;       
+    }
+
+    &__button a:hover{       
+        color: #FFFFFF;       
+    }
+
+    &__image {
+        position: relative;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+}
+
+.for-shadow{
+    box-shadow: 0px 0px 10px 0px rgb(28 36 95 / 32%);
+    border-radius: 44px 44px 44px 44px;
+}

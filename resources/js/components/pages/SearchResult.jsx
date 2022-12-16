@@ -19,17 +19,25 @@ const SearchResult = () => {
 
     const productsMaps = (product) => {
         return (
-            <Card style={{ width: '18rem' }} key={product.id}>
-                <Link to={`/product/${product.id}`}>
+            <Card style={{ width: "18rem" }} key={product.id}>
+                <Link
+                    to={`/product/${product.id}`}
+                    className="text-decoration-none"
+                >
                     <Card.Img variant="top" src={product.image} />
                     <Card.Body>
-                        <Card.Title className='Name'>{product.name}</Card.Title>
-                        <Card.Text className='product_price'>
-                            {product.price}$
+                        <Card.Title className="Name">{product.name}</Card.Title>
+                        <Card.Text className="product_price d-flex">
+                            {product.price}₴{" "}
+                            {product.category_id === 64 ? (
+                                <span>{product.weight} л.</span>
+                            ) : (
+                                <span>{product.weight} гр.</span>
+                            )}
                         </Card.Text>
                     </Card.Body>
                 </Link>
-            </Card >
+            </Card>
         )
     }
 

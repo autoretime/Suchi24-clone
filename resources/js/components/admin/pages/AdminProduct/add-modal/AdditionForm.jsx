@@ -71,7 +71,6 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) =>
                 }
             });
             if(data.success){
-                console.log(addProduct);
                 addProduct(data.data)            
             } 
         }
@@ -119,6 +118,14 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) =>
                 >
                     <Input />
                 </Form.Item>
+
+                <Form.Item
+                    label="weight"
+                    name="weight"
+                >
+                    <Input />
+                </Form.Item>
+
                 <Form.Item
                     label="Description"
                     name="description"
@@ -180,7 +187,7 @@ const AdditionForm = ({handleCancel, addProduct, editedProduct, editProduct}) =>
                 </Form.Item>
 
                 <Form.Item>
-                    <Button htmlType="submit" type="primary">
+                    <Button htmlType="submit" className='admin-btn'>
                         Save
                     </Button>
                 </Form.Item>

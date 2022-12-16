@@ -1,0 +1,35 @@
+.error-page{
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-page img{
+    width: 800px;
+
+    border-radius: 30px 30px 30px 30px;
+    box-shadow: 0px 0px 7px 0px rgb(21 19 52 / 50%);
+}
+
+.error-page h1{
+    color: #43A948;
+}
+
+.error-page p{
+    text-align: center;
+    font-weight: 600;
+}
+
+.error-page a {
+    padding: 5px 25px;
+    border-radius: 22px 22px 22px 22px;
+    background-color: #43A948;
+    border: 2px solid #000;
+    color: #fff;
+    text-decoration: none;
+}
+
+.error-page a:hover {
+    border-color: #43A948;
+    background: #000;
+    color: #fff;
+}

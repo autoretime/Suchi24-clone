@@ -25,7 +25,7 @@ const Edit= ({ order, setOrder }) => {
 
     return (
         <>
-            <Button type="primary" onClick={showModal}>
+            <Button className='admin-btns' onClick={showModal}>
                 Edit order info
             </Button>
             <Modal title="Edit order info"
@@ -62,8 +62,40 @@ const Edit= ({ order, setOrder }) => {
                         <Input />
                     </Form.Item>
 
+                    <Form.Item
+                        label="Name"
+                        name="user_name"
+                        rules={[{ required: true }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Adress"
+                        name="user_adress"
+                        rules={[{ required: true }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Будинок"
+                        name="user_adress_house"
+                        rules={[{ required: true }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Квартира"
+                        name="user_adress_number"
+                        rules={[{ required: true }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
                     <Form.Item>
-                        <Button htmlType="submit" type="primary">Save</Button>
+                        <Button htmlType="submit"  className='admin-btns'>Save</Button>
                     </Form.Item>
 
                 </Form>

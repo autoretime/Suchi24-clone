@@ -20,7 +20,7 @@ const Cart = () => {
                     >
                         –
                     </div>
-                    <div>{item.amount}</div>
+                    <div className="amount">{item.amount}</div>
                     <div
                         className="controls inc"
                         onClick={() => incrementProduct(item.id)}
@@ -28,7 +28,7 @@ const Cart = () => {
                         +
                     </div>
 
-                    <div>{item.price * item.amount}</div>
+                    <div>{item.price * item.amount} ₴</div>
                     <div>
                         {" "}
                         <Button

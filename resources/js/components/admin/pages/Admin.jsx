@@ -1,12 +1,14 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 
+
 const Admin = () => {
     return (
         <>
             <div className="main-block p-3">
                 <div className="sidebar">
                     <h2 className="my-3">Admin Sidebar</h2>
+                    <hr />
                     <div className="list-group">
                         <Link
                             to={`/admin`}
@@ -33,10 +35,13 @@ const Admin = () => {
                             Orders
                         </Link>
                     </div>
-                    {/* <a href="/">Back to site</a> */}
-                    <Link to={`/`} className="">
-                        Back to site
+                    
+                    <div className=" mt-5  ">
+                    <Link to={`/`} className="Back-to-shop">
+                        &lt;&nbsp;Back to site
                     </Link>
+                    </div>
+                    
                 </div>
                 <div className="content">
                     <Outlet />

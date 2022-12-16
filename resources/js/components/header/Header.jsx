@@ -1,84 +1,99 @@
 import React, { useContext, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import CartContext from "../contexts/CartContext";
-import Cart from "./pages/cart/Cart";
-import AuthUserContext from "../contexts/AuthUserContext";
-import Logout from "./pages/Authorization/Logout";
-import Search from "./Search";
-
+import CartContext from "../../contexts/CartContext";
+import Cart from "../pages/cart/Cart";
+import Logout from "../pages/Authorization/Logout";
+import Search from "../Search";
+import "./header.css";
+import Sidebar from "./Sidebar";
+import MainSidebar from "./MainSidebar";
 
 const Header = () => {
+    const { cartItems, modalClose, modalShow, showModal } =
+        useContext(CartContext);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const totalSum = () =>
+        cartItems.reduce((sum, item) => sum + item.price * item.amount, 0);
 
-    const {cartItems , modalClose,  modalShow, showModal} = useContext(CartContext);
-    const [authUser, setAuthUser] =useContext(AuthUserContext);
-    
+    const showModalSearch = () => {
+        setIsModalOpen(true);
+    };
 
-    const totalSum = () => 
-        cartItems.reduce((sum, item) => sum + item.price * item.amount, 0)
-
-    const isCartEmpty = () => cartItems.length === 0 ? true : false;
+    const isCartEmpty = () => (cartItems.length === 0 ? true : false);
 
     const cartFooter = (isCartEmpty) => {
         if (isCartEmpty) {
-            return (<p>Cart empty. You can go to <Link to="/" onClick={modalClose}>
-                catalog
-            </Link> and select products to buy</p>)
+            return (
+                <p className="empty ">
+                    Корзина порожня. <br />
+                    Додайте щось щоб зробити мене щасливим :)
+                    <br />
+                    <br />
+                    <Link to="/" onClick={modalClose}>
+                        Продовжити покупки
+                    </Link>{" "}
+                </p>
+            );
+        } else {
+            return (
+                <>
+                    <p>Total: {totalSum()} ₴</p>
+                    <Link
+                        to="/order"
+                        className="btn btn-order"
+                        onClick={modalClose}
+                    >
+                        Place Order
+                    </Link>
+                </>
+            );
         }
-        else {
-            return (<>
-                <p>Total: {totalSum()}</p>
-                <Link to="/order" className='btn btn-primary' onClick={modalClose}>
-                    Place Order
-                </Link>
-            </>)
-        }
-    }
+    };
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg bg-light">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="/">
-                        React
+            <div className="header-links d-f j-c-s-b p-6">
+                <div className="logo-block d-f">
+                    <a className="d-f logo" href="/">
+                        <img src="https://24rolls.com.ua/wp-content/uploads/2022/10/logo-1-300x139.png.webp" />
                     </a>
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarNav"
-                        aria-controls="navbarNav"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <a
-                                    className="nav-link active"
-                                    aria-current="page"
-                                    href="/"
-                                >
-                                    Home
-                                </a>
-                            </li>                            
-                        </ul>
-                        <Search/>
-
-                        <ul className="navbar-nav me-3 mb-2 mb-lg-0 justify-content-end col">
-                            <Logout />
-                        </ul>
+                    <div className=" d-f f-d-c call a-i-c j-c-c">
+                        <p> Работаем с 9 до 21 </p>
+                        <span>
+                            <a href="tel:+380985604424">(098)560-44-24</a>
+                        </span>
                     </div>
+                </div>
 
+                <MainSidebar />
+
+                <div className="social-links-block d-f a-i-c ">
+                    <div className="px-2">
+                    <button
+                        type="button"
+                        className=" admin-btn"
+                        onClick={showModalSearch}
+                    >
+                        <i className="fas fa-search"></i>
+                    </button>
+                    <Search
+                        isModalOpen={isModalOpen}
+                        setIsModalOpen={setIsModalOpen}
+                    />
+                    </div>
+                    
+
+                    <ul className="navbar-nav me-3 mb-2 mb-lg-0  col logout d-flex" >
+                        <Logout />
+                    </ul>
                     <Button
                         style={{
                             width: "3rem",
                             height: "3rem",
                             position: "relative",
                         }}
-                        variant="outline-primary"
+                        variant="outline-success"
                         className="rounded-circle"
                         onClick={modalShow}
                     >
@@ -109,7 +124,9 @@ const Header = () => {
                         )}
                     </Button>
                 </div>
-            </nav>
+            </div>
+
+            <Sidebar />
 
             <Modal show={showModal} onHide={modalClose}>
                 <Modal.Header closeButton>

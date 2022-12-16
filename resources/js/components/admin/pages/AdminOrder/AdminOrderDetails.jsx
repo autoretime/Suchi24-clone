@@ -78,6 +78,10 @@ const AdminOrderDetails = () => {
             <h2 className='my-3'>Order №{id}</h2>
             <p><b>Email:</b> {order.user_email}</p>
             <p><b>Phone:</b> {order.user_phone}</p>
+            <p><b>Name:</b> {order.user_name}</p>
+            <p><b>Adress:</b> {order.user_adress}</p>
+            <p><b>Будинок:</b> {order.user_adress_house}</p>
+            <p><b>Квартира:</b> {order.user_adress_number}</p>
             <p><b>Created at:</b> {dateFormat(order.created_at)}</p>
             <Edit order={order} setOrder={setOrder} />
             <hr></hr>

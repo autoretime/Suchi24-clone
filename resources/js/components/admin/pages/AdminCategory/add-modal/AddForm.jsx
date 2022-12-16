@@ -3,6 +3,8 @@ import { Button, Form, Input, Upload } from 'antd';
 import 'antd/dist/antd.css';
 import { useForm } from 'antd/lib/form/Form';
 import { PlusOutlined } from '@ant-design/icons';
+import "../style.css";
+
 
 // showModalAddState, modalAddClose, submitAddHandler
 const AddForm = ({  addCategories, handleCancel, editedCategory ,editCategory}) => {
@@ -44,7 +46,7 @@ const AddForm = ({  addCategories, handleCancel, editedCategory ,editCategory}) 
                 },
                 
             });
-                addCategories(data)
+                addCategories(data.data)
         }
 
         if(editCategory){
@@ -84,7 +86,7 @@ const AddForm = ({  addCategories, handleCancel, editedCategory ,editCategory}) 
                     </Upload>
                 </Form.Item>
                 <Form.Item>
-                    <Button htmlType="submit" type="primary">
+                    <Button htmlType="submit" className='admin-btns'>
                         Save
                     </Button>
                 </Form.Item>

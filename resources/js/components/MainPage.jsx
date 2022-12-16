@@ -1,15 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Footer from './Footer';
-import Header from './Header';
-import Sidebar from './Sidebar';
+import Footer from './footer/Footer';
+import Header from './header/Header';
 
 const MainPage = () => {
     return (
         <>
             <Header />
-            <div className='main-block p-3'>
-                <Sidebar />
+            <div className='main-block p-5'>
                 <div className='content'>
                     <Outlet />
                 </div>

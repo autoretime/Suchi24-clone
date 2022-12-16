@@ -2,6 +2,7 @@ import { Button, Modal } from 'antd';
 import React, { useState } from 'react';
 import AdditionForm from './AdditionForm';
 
+
 const AddPr = ({addProduct}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
@@ -12,7 +13,7 @@ const AddPr = ({addProduct}) => {
     };
     return (
         <>
-            <Button type="primary" onClick={showModal}>
+            <Button  className='admin-btn' onClick={showModal}>
                 Add Product
             </Button>
             <Modal

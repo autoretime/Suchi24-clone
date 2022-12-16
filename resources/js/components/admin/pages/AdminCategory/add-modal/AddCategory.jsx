@@ -1,6 +1,8 @@
 import React , {useState}from 'react';
 import { Button, Modal } from 'antd';
 import AddForm from './AddForm';
+import "../style.css"
+
 
 const AddCategory = ({addCategories}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,7 +17,7 @@ const AddCategory = ({addCategories}) => {
 
     return (
         <>
-            <Button type="primary" onClick={showModal}>
+            <Button className='admin-btns' onClick={showModal}>
                 Add Category
             </Button>
             <Modal

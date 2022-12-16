@@ -17,6 +17,11 @@ import '../../css/app.css'
 import SearchResult from '../components/pages/SearchResult';
 import MainPage from '../components/MainPage';
 import Admin from '../components/admin/pages/Admin';
+import Delivery from '../components/pages/Delivery/Delivery';
+import Pay from '../components/pages/HowToPay/Pay';
+import Stock from '../components/pages/Stock/Stock';
+import About from '../components/pages/aboutUs/About';
+import DashBoard from '../components/admin/pages/Dashboard/DashBoard';
 
 const Router = () => {
 
@@ -27,7 +32,7 @@ const Router = () => {
             ""
         ) : (
             <Route path="/admin" element={<Admin />} >
-                <Route path="" element={ <h2 >Dashboard</h2> } />
+                <Route path="" element={ <DashBoard/> } />
                 <Route path="categories" element={<AdminCategory />} />
                 <Route path="products" element={<AdminProduct />} />
                 <Route path="orders" element={<AdminOrder />} />
@@ -40,6 +45,10 @@ const Router = () => {
         <Routes>
             <Route path="/" element={<MainPage />} >
                 <Route path="/" element={<Home />} />
+                <Route path="/delivery" element={<Delivery />} />
+                <Route path="/pay" element={<Pay />} />
+                <Route path="/stock" element={<Stock />} />
+                <Route path="/about" element={<About />} />
                 <Route path="/category/:id" element={<Category />} />
                 <Route path="/product/:id" element={<Product />} />
                 <Route path="/order" element={<Order />} />

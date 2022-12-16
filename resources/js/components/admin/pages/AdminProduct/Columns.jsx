@@ -14,7 +14,8 @@ const getColumns = (removeProduct, setEditedProduct, setIsModalOpen) => {
         {
             title: "Name",
             dataIndex: "name",
-            key: "name",
+            key: "name",       
+
         },
         {
             title: "Price",

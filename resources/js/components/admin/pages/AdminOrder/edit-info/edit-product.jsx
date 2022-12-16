@@ -1,6 +1,7 @@
 import { Modal } from 'antd';
 import { Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
+import './style.css'
 
 const EditProduct = ({isModalOpen, orderProducts, setOrderProducts, setIsModalOpen}) => {
 
@@ -62,18 +63,18 @@ const EditProduct = ({isModalOpen, orderProducts, setOrderProducts, setIsModalOp
                         item.product_amount !== 0 ? (
                             <div key={item.id} className="cart-items ">
                                 <div>{item.product_name}</div>
-                                <div className='d-flex align-items-center'>
+                                <div className='d-flex align-items-center '>
                                     <div
-                                        className="control dec"
+                                        className="controlers dec"
                                         onClick={() =>
                                             decrementProduct(item.id)
                                         }
                                     >
                                         –
                                     </div>
-                                    <div>{item.product_amount}</div>
+                                    <div className='px-2'>{item.product_amount}</div>
                                     <div
-                                        className="control inc"
+                                        className="controlers inc"
                                         onClick={() =>
                                             incrementProduct(item.id)
                                         }
@@ -83,7 +84,7 @@ const EditProduct = ({isModalOpen, orderProducts, setOrderProducts, setIsModalOp
                                 </div>
 
                                 <div>
-                                    {item.product_price * item.product_amount}
+                                    {item.product_price * item.product_amount}₴
                                 </div>
                                 <div>
                                     {" "}
@@ -102,9 +103,9 @@ const EditProduct = ({isModalOpen, orderProducts, setOrderProducts, setIsModalOp
                     )}
                 </div>
 
-                <Button type="primary" onClick={submitHandler}>
+                <button className='admin-btns' onClick={submitHandler}>
                     Save
-                </Button>
+                </button>
             </Modal>
         </div>
     );

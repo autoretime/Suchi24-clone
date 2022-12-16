@@ -57,12 +57,21 @@ class OrderController extends Controller
     {
         $request->validate([
             'user_email' => 'required',
+            'user_name' => 'required',
             'user_phone' => 'required|numeric',
+            'user_adress' => 'required',
+            'user_adress_house' => 'required|numeric',
+            'user_adress_number' => 'required|numeric',
+
         ]);
 
         $order = Order::findOrFail($id);
         $order->user_email = $request['user_email'];
         $order->user_phone = $request['user_phone'];
+        $order->user_name = $request['user_name'];
+        $order->user_adress = $request['user_adress'];
+        $order->user_adress_house = $request['user_adress_house'];
+        $order->user_adress_number = $request['user_adress_number'];
         $order->save();
 
         return response()->json([

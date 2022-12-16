@@ -1,0 +1,187 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css");
+
+
+.d-f {
+	display: flex;
+}
+
+.f-d-c {
+	flex-direction: column;
+}
+
+.j-c-c {
+	justify-content: center;
+}
+
+.j-c-s-a {
+	justify-content: space-around;
+}
+
+.a-i-f-s {
+	align-items: flex-start;
+}
+
+.a-i-c {
+	align-items: center;
+}
+
+.j-c-s-b {
+	justify-content: space-between;
+}
+
+.j-c-f-s {
+	justify-content: flex-start;
+}
+
+.p-15 {
+	padding: 0 15%;
+}
+
+.p-10 {
+	padding: 0 10%;
+}
+
+.p-6 {
+	padding: 0 5% !important;
+}
+
+.f-d-c {
+	flex-direction: column;
+}
+
+
+
+.text::before {
+	content: '';
+}
+
+.header-links {
+	height: 85px;
+	background: #fff;
+	color: #000;
+	border-radius: 0px 0px 33px 33px;
+	box-shadow: 0px 0px 10px 0px rgb(28 36 95 / 40%);
+}
+
+.logo {
+	margin-right: 10px;
+}
+
+.call {
+	text-align: left;
+	font-weight: 600;
+}
+
+.call p {
+	margin: 0 !important;
+	color: #A7A6A6;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.call a {
+	margin: 0 !important;
+	text-decoration: none;
+	color: #000;
+}
+
+.call a:hover {
+	color: #000;
+}
+
+.header-links .logo-block img {
+	width: 100%;
+	max-width: 145px;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.header-links .logo-block p {
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+.social-links-block img {
+	width: 17px;
+	height: 17px;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.header {
+	background: rgba(255, 255, 255, 0.8);
+	;
+	margin-top: 13px;
+	height: 70px;
+	z-index: 3;
+	position: sticky;
+	right: 0;
+	left: 0;
+	top: 0;
+}
+
+.header h1 {
+	font-size: 20px;
+	cursor: pointer;
+}
+
+
+.header ul li {
+	font-weight: bold;
+	margin: 10px;
+	font-size: 14px;
+	list-style-type: none;
+}
+
+.header ul li a {
+	text-decoration: none !important;
+	color: #54595f;
+	padding: 5px 11px !important;
+}
+
+.header ul li a:focus,
+.header ul li a:hover {
+	background: #579267;
+	border-radius: 35px;
+	color: #fff;
+	cursor: pointer;
+	transition: .4s !important;
+}
+
+.header a {
+	font-weight: 600;
+}
+
+.admin-btn {
+	padding: 5px 10px;
+	border-radius: 22px 22px 22px 22px;
+	background-color: #43A948;
+	border: 2px solid #000;
+	color: #fff;
+}
+
+.admin-btn:hover {
+	border: 2px solid #43A948;
+	background: #000;
+	color: #fff;
+}
+
+.ant-modal-title {
+	color: #43A948;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.Search-bar{
+	width: 100%!important;
+}
+
+.form-outline input {
+		text-align: center;
+}
+
+.logout{
+	width: 175px;
+	justify-content: center;
+	text-align: center;
+}

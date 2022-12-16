@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './header.css'
+
 
 const Sidebar = () => {
     const [categories, setCategories] = useState([]);
@@ -18,16 +20,17 @@ const Sidebar = () => {
     }
 
     return (
-        <div className='sidebar'>
-            <h2 className='my-3'>Categories</h2>
-            <div className="list-group">
+        <div className="header d-f j-c-s-b p-10 a-i-c">
                 {categories.map((category) => (
-                    <Link to={`/category/${category.id}`} className="list-group-item list-group-item-action" key={category.id}>{category.name}</Link>
-                ))
-                }
-
-            </div >
-        </div >
+                    <Link
+                        to={`/category/${category.id}`}
+                        className=" list-group-item-action"
+                        key={category.id}
+                    >
+                        {category.name}
+                    </Link>
+                ))}
+        </div>
     );
 }
 

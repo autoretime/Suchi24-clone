@@ -8,12 +8,16 @@ const AdminCategory = () => {
     const [categories, setCategories] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editedCategory, setEditedProduct] = useState({});
+    const [loading, setLoading] = useState(false);
+
 
 
     const getCategories = async () => {
+        setLoading(true)
         const response =await axios.get('/api/categories');
         console.log(response);
         setCategories(response.data);
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -30,10 +34,14 @@ const AdminCategory = () => {
     }
 
     const editCategory = async(id, values) => {
-        const {data} = await axios.put("/api/categories/" + id, values)
+        const {data} = await axios.post("/api/categories/" + id, values, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
         const updatedCategory = _.cloneDeep(categories)
         const category = updatedCategory.find(p => p.id === id)
-        _.assign(category, data)        
+        _.assign(category, data.data)        
         setCategories(updatedCategory)
     }
    
@@ -43,7 +51,7 @@ const AdminCategory = () => {
             <h2 className='my-3'>Categories</h2>
             <AddCategory addCategories={addCategories}/>
             <EditCategory isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} editedCategory={editedCategory} editCategory={editCategory} />
-            <Table dataSource={categories} columns={getColumnsCategory(removeCategory, setEditedProduct, setIsModalOpen)} rowKey='id' pagination={{pageSize: 6}}/>
+            <Table loading={loading} dataSource={categories} columns={getColumnsCategory(removeCategory, setEditedProduct, setIsModalOpen)} rowKey='id' pagination={{pageSize: 9}}/>
         </div >
     );
 }
